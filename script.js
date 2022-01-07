@@ -56,77 +56,16 @@ function showRecipe(tabRecipes) {
 
 showRecipe(recipesAll);
 
-//Search in main searchbar
-// 1. pushing searchbar (mainInput) value into tags array - to compare with recipe.title, recipe.ingredients, recipe.description
 
-var searchBar = [];
-
-// search in main searchbar
-
-
-//|| recipe.ingredients.ingredient.includes(searchString) || recipe.description.includes(searchString)
-
-
-//function mainSearch() {
-    
-    /*mainInput.addEventListener('keyup', (e) => {
-        const searchString = e.target.value.toLowerCase();
-
-        const filteredRecipes = recipesAll.filter((recipe) => {
-            return (
-                recipe.name.toLowerCase().includes(searchString) 
-            );
-        });
-        
-        /*if(e.target.value.length < 3) {
-            recipesMain.innerHTML = "Veuillez entrer au moins 3 caractères d'un ingrédient ou ustensiles."
-        }
-
-        if (e.target.value.length >= 3) {
-            //titleArray = searchRecipeTitle(e.target.value, recipesAll);
-            //console.log(titleArray);
-            //ingredientsArray = searchRecipeIngredients(e.target.value, recipesAll);
-            //descriptionArray = searchRecipeDescription(e.target.value, recipesAll);
-            
-
-        }*/
-        // concatenate 3 arrays above
-        //titleAndIngredientsArray = titleArray.concat(ingredientsArray);
-        //titleIngredientsAndDescriptionArray = titleAndIngredientsArray.concat(descriptionArray)
-
-        //eliminate duplicates
-        //const filteredTitleIngredientsAndDescriptionArray = 
-        //console.log(filteredRecipes);
-        //showRecipe(filteredRecipes);
-    //})
-    
-//}
-//mainSearch();
-
-//looping through appliance 
-/*recipesAll.forEach(recipe => {
-    if (searchBar == recipe.appliance)
-    console.log("yes");
-})
-
-//looping through ustensils
-recipesAll.forEach(recipe => {
-    recipe.ustensils.forEach(ustensil => {
-        if (searchBar == ustensil)
-        console.log("yes");
-    })
-})
 
 //looping through ingredients 
-recipesAll.forEach(recipe => {
+/*recipesAll.forEach(recipe => {
     recipe.ingredients.forEach(ingredient => {
         if (searchBar == ingredient)
         console.log("yes");
     })
 })*/
 
-//search in recipesAll.title  
-//let recipeTitleAll = [] // array of string with all recipe title in it
 
 mainInput.addEventListener('keyup', (e) => {
     const searchString = e.target.value.toLowerCase();
@@ -155,20 +94,6 @@ function recipeFilter(value) {
 }
 
 
-
-   
-
-/*function searchRecipeTitle(recipeTitle, recipeAll) {
-    recipesAll.forEach(function(recipe) {
-        var recipeTitle = recipe["name"]; //array of string
-        recipeTitleAll.push(recipeTitle);
-    }); 
-    
-     
-}*/
-
-//searchRecipeTitle();
-
 //search in recipesAll.ingredients  
 let recipeIngredientsAll = [] // array of objects with all recipe ingredients in it
 
@@ -194,7 +119,6 @@ console.log(recipeDescriptionAll);
 searchRecipeDescription();
 
 
-
 // dropdowns
 
 const filters = document.querySelectorAll('.filter-button');
@@ -216,61 +140,26 @@ function showDropDown() {
 arrows.forEach(arrow => {
     arrow.addEventListener('click', () => {
         arrow.style.transform = 'rotate(180deg)';
-        showAppliance;
+        showAppliance();
     })
 })
 
 
-//looping through appliance 
+//looping through appliance - launching dropdown appliance
 
 const dropDownAppliance = document.getElementById("dropdown-appliance");
-
 
 function showAppliance() {
     let recipeApplianceAll = [];
     recipesAll.forEach(recipe => {
 
-        var recipeAppliance = recipe["appliance"]; //array of string
-        
+        var recipeAppliance = recipe["appliance"]; //object of strings
         
         if (!recipeApplianceAll.includes(recipeAppliance)) {
             recipeApplianceAll.push(recipeAppliance);
         }
-
-        //return [...new Set(recipeApplianceAll)].sort();
-        //console.log([...new Set(recipeApplianceAll)].sort());
-
-        /*const uniqueRecipeAppliance = new Set(recipeApplianceAll);
-        
-        const uniqueApplianceArray = [...uniqueRecipeAppliance];
-        console.log(uniqueApplianceArray);*/
-
-        
-
-        /*function uniqueAppliance(appliance, index, self) {
-            return self.indexOf(appliance) === index;
-        }
-        var uniqueRecipeApplianceOnly = recipeApplianceAll.filter(uniqueAppliance);
-        console.log(uniqueRecipeApplianceOnly);*/
-
-        /*let uniqueRecipeApplianceOnly = [];
-        recipeApplianceAll.forEach((appliance) => {
-            if(!uniqueRecipeApplianceAll.includes(appliance)) {
-                uniqueRecipeApplianceOnly.push(appliance)
-            }
-        })
-        console.log(uniqueRecipeApplianceOnly);*/
-
-
-        /*let uniqueRecipeApplianceAll = recipeApplianceAll.filter((appliance, index) =>{
-            return recipeApplianceAll.indexOf(appliance) === index;
-        })
-        console.log(uniqueRecipeApplianceAll);*/
-        
-
-
-      
     });
+
     recipeApplianceAll.forEach(recipe => {
         let appliance = document.createElement("li");
         appliance.classList.add("appliance-li");
@@ -283,8 +172,29 @@ function showAppliance() {
 
 showAppliance();
 
-function showUstensils() {
 
+////looping through ustensils - launching dropdown ustensils
+const dropDownUstensils = document.getElementById("dropdown-ustensils");
+
+function showUstensils() {
+    let recipeUstensilsAll = [];
+
+    recipesAll.forEach(recipe => {
+        recipe.ustensils.forEach(ustensil => {
+            var recipeUstensil = ustensil;
+            if (!recipeUstensilsAll.includes(recipeUstensil)) {
+                recipeUstensilsAll.push(recipeUstensil);
+            }
+        })
+    });
+    console.log(recipeUstensilsAll);
+    recipeUstensilsAll.forEach(recipe => {
+        let ustensil = document.createElement("li");
+        ustensil.classList.add("ustensil-li");
+
+        ustensil.innerHTML = recipe;
+        dropDownUstensils.appendChild(ustensil);
+    });
 }
 showUstensils()
 
