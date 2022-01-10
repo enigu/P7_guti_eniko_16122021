@@ -95,7 +95,7 @@ function recipeFilter(value) {
 
 
 //search in recipesAll.ingredients  
-let recipeIngredientsAll = [] // array of objects with all recipe ingredients in it
+/*let recipeIngredientsAll = [] // array of objects with all recipe ingredients in it
 
 function searchRecipeIngredients(recipeIngredients, recipeAll) {
     recipesAll.forEach(function(recipe) {
@@ -116,7 +116,7 @@ function searchRecipeDescription(recipeDescription, recipeAll) {
     });    
 }
 console.log(recipeDescriptionAll);
-searchRecipeDescription();
+searchRecipeDescription();*/
 
 
 // dropdowns
@@ -173,7 +173,7 @@ function showAppliance() {
 showAppliance();
 
 
-////looping through ustensils - launching dropdown ustensils
+//looping through ustensils - launching dropdown ustensils
 const dropDownUstensils = document.getElementById("dropdown-ustensils");
 
 function showUstensils() {
@@ -197,5 +197,31 @@ function showUstensils() {
     });
 }
 showUstensils()
+
+
+//looping through ingredientss - launching dropdown of ingredients
+const dropDownIngredients = document.getElementById("dropdown-ingredients");
+
+function showIngredients() { 
+    let recipeIngredientsAll = []
+    console.log(recipeIngredientsAll);
+    recipesAll.forEach(recipe => {
+        recipe.ingredients.forEach(ingredient => {
+            var recipeIngredient = ingredient.ingredient;
+            if (!recipeIngredientsAll.includes(recipeIngredient)) {
+            recipeIngredientsAll.push(recipeIngredient);
+            }
+        })
+    });
+    recipeIngredientsAll.forEach(recipe => {
+        let ingredient = document.createElement("li");
+        ingredient.classList.add("ingredient-li");
+
+        ingredient.innerHTML = recipe;
+        dropDownIngredients.appendChild(ingredient);
+    }); 
+}
+showIngredients();
+
 
 
