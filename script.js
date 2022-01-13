@@ -94,56 +94,88 @@ function recipeFilter(value) {
 }
 
 
-//search in recipesAll.ingredients  
-/*let recipeIngredientsAll = [] // array of objects with all recipe ingredients in it
-
-function searchRecipeIngredients(recipeIngredients, recipeAll) {
-    recipesAll.forEach(function(recipe) {
-        var recipeIngredients = recipe["ingredients"]; //array of string
-        const recipeArray = recipeIngredientsAll.push(recipeIngredients);
-    });    
-}
-console.log(recipeIngredientsAll);
-searchRecipeIngredients();
-
-//search in recipesAll.description
-let recipeDescriptionAll = [] // array of string with all recipe description in it
-
-function searchRecipeDescription(recipeDescription, recipeAll) {
-    recipesAll.forEach(function(recipe) {
-        var recipeDescription = recipe["description"]; //array of string
-        const recipeArray = recipeDescriptionAll.push(recipeDescription);
-    });    
-}
-console.log(recipeDescriptionAll);
-searchRecipeDescription();*/
-
-
 // dropdowns
 
 const filters = document.querySelectorAll('.filter-button');
 const arrows = document.querySelectorAll('.arrow')
-filters.forEach(filter => {
+const dropDown = document.querySelectorAll('.dropdown')
+const dropDownMenu = document.querySelectorAll('.dropdown-menu')
+
+
+const filterInputs = document.querySelectorAll('.filter-button > input')
+
+/*filterInputs.forEach(input => {
+    input.addEventListener('click', chooseDropDown(e));
     
-filter.addEventListener('click', showDropDown)
+    //input.value = `Recherche un ${data-value}`
+});*/
+
+filterInputs.forEach(input => {
+    input.addEventListener('click', e => {
+        showDropDown(e, input)
+
+    })  
 });
 
-filters.innerHTML = 'rechercher un ingrédient';
-function showDropDown() {
-    
-    const filterSearch = filters.innerHTML;
+function showDropDown(e, input) {
+    e.target.dataset.choisi =  e.target.dataset.choisi == "true" ? "false": "true";
+        console.log(e.target.dataset)
 
-    //ul mettre une class show
-    //li  data-color
+        if(e.target.dataset.choisi === "true") {
+            input.parentNode.classList.add("active")
+            if (e.target.dataset.color === "blue") {
+                input.parentNode.parentNode.style.backgroundColor = "blue";
+                console.log(e.target.dataset.color);
+                console.log(input.parentNode.parentNode);
+            }    
+        }
+
+        if(e.target.dataset.choisi === "false" ) {
+            input.parentNode.classList.remove("active")
+        }
+
 }
 
-arrows.forEach(arrow => {
-    arrow.addEventListener('click', () => {
-        arrow.style.transform = 'rotate(180deg)';
-        showAppliance();
-    })
-})
 
+/*function showDropDown () {
+    console.log('coucou');
+    const clickedInput = document.querySelectorAll('.filter-button > input[data-choisi="true"]')
+    console.log(clickedInput);
+    //dropDown.style.width = '50%';
+    //dropDown.classList.add('active');
+
+}
+showDropDown();*/
+
+
+/*document.addEventListener("click", e => {
+    const isDropDownButton = e.target.matches("[data-dropdown-button]")
+
+    if (isDropDownButton) {
+        //dropDownMenu.classList.add('active')
+        //dropDownMenu.style.display = "flex"
+    
+    }
+    //else return
+  })*/
+
+  /*function openDropDown() {
+    if (!dropDownMenu.classList.contains("active")) {
+        
+        arrows.style.transform = 'rotate(180deg)';
+        dropDownMenu.style.display = "flex";
+        dropDownMenu.classList.add("active");
+      }
+
+      else if (dropDownMenu.classList.contains("active")) {
+        arrow.style.transform = 'rotate(360deg)';
+        dropDownMenu.style.display = "none";
+        dropDownMenu.classList.remove("active");
+      }
+  }*/
+
+
+  
 
 //looping through appliance - launching dropdown appliance
 
@@ -153,12 +185,21 @@ function showAppliance() {
     let recipeApplianceAll = [];
     recipesAll.forEach(recipe => {
 
-        var recipeAppliance = recipe["appliance"]; //object of strings
+        let recipeAppliance = recipe["appliance"]; //object of strings
         
         if (!recipeApplianceAll.includes(recipeAppliance)) {
             recipeApplianceAll.push(recipeAppliance);
         }
     });
+
+    /*applianceSorted = []
+    function applianceSort() {  
+        sortedAppliance = recipeApplianceAll.sort()
+        applianceSorted.push(sortedAppliance);
+        
+    }
+    console.log(applianceSorted)
+    applianceSort();*/
 
     recipeApplianceAll.forEach(recipe => {
         let appliance = document.createElement("li");
@@ -166,8 +207,7 @@ function showAppliance() {
 
         appliance.innerHTML = recipe;
         dropDownAppliance.appendChild(appliance);
-    });
-    //console.log(recipeApplianceAll);
+    }); 
 };
 
 showAppliance();
@@ -186,11 +226,20 @@ function showUstensils() {
                 recipeUstensilsAll.push(recipeUstensil);
             }
         })
+
+        function ustensilSort(recipeUstensilsAll) { 
+            sortedUstensils = recipeUstensilsAll.sort()
+            let upperCasedUstensils = sortedUstensils.map(ustensil => ustensil.charAt(0).toUpperCase() + ustensil.substr(1))
+            //console.log(upperCasedUstensils);
+            return upperCasedUstensils;
+        }
+        ustensilSort(recipeUstensilsAll); 
     });
-    console.log(recipeUstensilsAll);
+
     recipeUstensilsAll.forEach(recipe => {
         let ustensil = document.createElement("li");
         ustensil.classList.add("ustensil-li");
+        
 
         ustensil.innerHTML = recipe;
         dropDownUstensils.appendChild(ustensil);
@@ -199,12 +248,12 @@ function showUstensils() {
 showUstensils()
 
 
+
 //looping through ingredientss - launching dropdown of ingredients
 const dropDownIngredients = document.getElementById("dropdown-ingredients");
 
 function showIngredients() { 
     let recipeIngredientsAll = []
-    console.log(recipeIngredientsAll);
     recipesAll.forEach(recipe => {
         recipe.ingredients.forEach(ingredient => {
             var recipeIngredient = ingredient.ingredient;
@@ -219,6 +268,7 @@ function showIngredients() {
 
         ingredient.innerHTML = recipe;
         dropDownIngredients.appendChild(ingredient);
+        dropDownIngredients.style.backgroundColor = "blue";
     }); 
 }
 showIngredients();

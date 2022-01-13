@@ -27,32 +27,32 @@
         <section class="tags"></section>
 
         <section class="filter">
-            <div class="filter-div">
+            <div class="dropdown">
                 <div class="filter-button">
-                    <input type="text" role="choice" data-value="ingredients" value="Ingrédients" class="choice" id="ingredients" data-color="blue">
+                    <input data-choisi="false" type="text" role="choice" data-value="ingredients" value="Ingrédients" class="choice" id="ingredients" data-color="blue">
                     <span class="arrow"><i class="fas fa-chevron-down"></i></span>
                 </div>
-                <ul class="dropdown" id="dropdown-ingredients"> 
+                <ul class="dropdown-menu" id="dropdown-ingredients"> 
                   
                 </ul>    
             </div>
 
-            <div class="filter-div">
+            <div class="dropdown">
                 <div class="filter-button">
-                    <input role="choice" data-value="Appareil" class="choice" id="applience">
+                    <input  data-choisi="false" role="choice" data-value="Appareil" value="Appareil" class="choice" id="applience" data-color="green">
                     <span class="arrow"><i class="fas fa-chevron-down"></i></span>
                 </div>
-                <ul class="dropdown" id="dropdown-appliance"> 
+                <ul class="dropdown-menu" id="dropdown-appliance" style= "background-color: blue;"> 
                     
                 </ul>    
             </div>
 
-            <div class="filter-div">
-                <div class="filter-button">
-                    <input role="choice" data-value="Ustensiles" class="choice" id="ustensils">
+            <div class="dropdown">
+                <div class="filter-button" >
+                    <input data-choisi="false" role="choice" data-value="Ustensiles" value="Ustensiles" class="choice" id="ustensils" data-color="red">
                     <span class="arrow"><i class="fas fa-chevron-down"></i></span>
                 </div>
-                <ul class="dropdown" id="dropdown-ustensils"> 
+                <ul class="dropdown-menu" id="dropdown-ustensils"> 
                     
                 </ul>    
             </div>
