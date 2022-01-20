@@ -32,7 +32,11 @@
     justify-content: flex-start;
     align-items: center;
     margin-left: 2em;
-    
+}
+
+#ingredients {
+    background-color: #3282f7;
+    color: white;
 }
 
 .dropdown {
@@ -53,10 +57,73 @@
     display: none;
 }
 
+.dropdown-menu li{
+    width: 33%;
+    padding: 4px 0px 4px 0px;
+}
+
+#ingredient-button {
+    background-color: #3282f7;
+}
+
+#appliance-button {
+    background-color: #68d9a4;
+}
+
+#ustensil-button {
+    background-color: #ed6454;
+}
+
+#ingredients {
+    background-color: #3282f7;
+    color: white;
+}
+
+#appliance {
+    background-color: #68d9a4;
+    color: white;
+}
+
+#ustensils {
+    background-color: #ed6454;
+    color: white;
+}
+
+#dropdown-ingredients {
+    background-color: #3282f7;
+    color: white;
+}
+
+#dropdown-appliance {
+    background-color: #68d9a4;
+    color: white;
+}
+
+#dropdown-ustensils {
+    background-color: #ed6454;
+    color: white;
+}
+
+.arrow {
+    color: white;
+    position: absolute;
+    right: 18px;
+}
+
+.filter-button.active {
+    width: 400px;
+    padding: 16px 32px 16px 32px;
+}
+
 .filter-button.active + .dropdown-menu {
     display: flex;
     flex-wrap: wrap;
     pointer-events: auto;
+    width: 400px;
+    top: calc(75%);
+    padding-top: 0px;
+    border-radius: 0px 0px 4px 4px;
+
 }
 .filter-button.active > .arrow {
     transform: rotate(180deg);
@@ -70,11 +137,19 @@
     align-content: center;
     justify-content: space-evenly;
     align-items: center; 
+    position: relative;
+    border-radius: 4px;
+    padding: 10px 8px 10px 16px;
 }
 
 .filter-button input {
     border: none;
     padding: 0;
+    font-size: 1em;
+}
+
+.filter-button input:focus {
+    outline: none;
 }
 
 .recipes {
