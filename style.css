@@ -166,6 +166,8 @@
 .recipe-card {
     width: 30em;
     height: auto;
+    margin: 1em;
+    border-radius: 6px;
 }
 .recipe-card a {
     text-decoration: none;
@@ -181,6 +183,8 @@
     align-content: center;
     justify-content: space-between;
     align-items: center;
+    color: black;  
+    background-color: #e7e7e7;
 }
 .recipe-header h2 {
     font-size: 1em;
@@ -197,6 +201,8 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    color: black; 
+    background-color: #e7e7e7;
 }
 .ingredients {
     font-size: 0.8em;
@@ -206,5 +212,11 @@
 }
 .recipe-description {
     font-size: 0.8em;
-    width: 50%;
+    width: 240px;
+    display: -webkit-box;
+    -webkit-line-clamp: 6;
+    -webkit-box-orient: vertical;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    height: 109px;
 }
