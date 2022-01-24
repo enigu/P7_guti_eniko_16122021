@@ -3,19 +3,21 @@
 /*<div class="recipe-card">
 <a href="#">
     <div class="recipe-img"></div>
-    <div class="recipe-header">
-        <h2></h2>
-        <div class="recipe-time">
-            <i class="far fa-clock"></i>
-            <p>min</p>
+    <div class="recipe-info">
+        <div class="recipe-header">
+            <h2></h2>
+            <div class="recipe-time">
+                <i class="far fa-clock"></i>
+                <p>min</p>
+            </div>
         </div>
-    </div>
-    <div class="recipe-details">
-        <ul class="ingredients">
-            <li></li>
-        </ul>
-        <p class="recipe-description"></p>
-    </div>
+        <div class="recipe-details">
+            <ul class="ingredients">
+                <li></li>
+            </ul>
+            <p class="recipe-description"></p>
+        </div>
+     </div>    
 </a>
 </div>*/
 
@@ -48,7 +50,7 @@ function showRecipe(tabRecipes) {
         let recipeCard = document.createElement("div");
         recipeCard.classList.add("recipe-card");
 
-        recipeCard.innerHTML = '<a href="#">' + '<div class="recipe-img">' + '</div>' + '<div class="recipe-header">' + '<h2>' + recipe["name"] + '</h2>' + '<div class="recipe-time">' + '<i class="far fa-clock">' + '</i>' + '<p>' + recipe["time"] + 'min' + '</p>' + '</div>' +  '</div>' + '<div class="recipe-details">' + '<ul class="ingredients">' + listOfIngredients + '</ul>' + '<p class="recipe-description">' + recipe["description"] + '</p>' +'</div>' + '</a>' + '</div>';
+        recipeCard.innerHTML = '<a href="#">' + '<div class="recipe-img">' + '</div>' + '<div class="recipe-info">' + '<div class="recipe-header">' + '<h2>' + recipe["name"] + '</h2>' + '<div class="recipe-time">' + '<i class="far fa-clock">' + '</i>' + '<p>' + recipe["time"] + 'min' + '</p>' + '</div>' +  '</div>' + '<div class="recipe-details">' + '<ul class="ingredients">' + listOfIngredients + '</ul>' + '<p class="recipe-description">' + recipe["description"] + '</p>' +'</div>' + '</div>' + '</a>' + '</div>';
 
         recipesMain.appendChild(recipeCard);  
     });    
