@@ -17,7 +17,7 @@
             </ul>
             <p class="recipe-description"></p>
         </div>
-     </div>    
+    </div>    
 </a>
 </div>*/
 

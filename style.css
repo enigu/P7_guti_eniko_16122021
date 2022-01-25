@@ -161,18 +161,14 @@
 
 .recipes {
     margin-top: 3em;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-content: center;
-    align-items: center 
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
 }
 .recipes-filtered {
     margin-top: 3em;
 }
 .recipe-card {
-    width: 30em;
-    height: auto;
     margin: 1em;
     border-radius: 6px;
 }
@@ -180,59 +176,74 @@
     text-decoration: none;
 }
 .recipe-img{
-    width: 100%;
-    height: 11em;
+    width: 380px;
+    height: 178px;
     background: #c7bebe;
+    border-radius: 6px 6px 0px 0px;
+    padding: 15px;
 }
 
 .recipe-info {
-    width: 100%;
+    width: 380px;
+    height: 178px;
+    background-color: #e7e7e7;
+    padding: 15px;
 }
 
 .recipe-header {
-    display: flex;
-    flex-direction: row;
-    align-content: center;
-    justify-content: space-between;
+    display: grid;
     align-items: center;
+    justify-items: stretch;
+    grid-template-columns: 2.2fr 1fr;
+    gap: 10px;
     color: black;  
     background-color: #e7e7e7;
-    padding: 0.5em; 
+    height: 2em;
 }
 .recipe-header h2 {
     font-size: 1.1em;
     font-weight: normal;
+    margin-bottom: 0px;
+    margin-top: 0px;
 }
 .recipe-time {
     display: flex;
     flex-direction: row;
     align-content: center;
-    justify-content: space-between;
+    justify-content: flex-end;
     align-items: center;
     font-weight: bold;
 }
+
+.i.far.fa-clock {
+    margin-right: 6px;
+}
+ .recipe-time p {
+    margin-left: 4px;
+ }
 .recipe-details {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
+    display: grid;
+    align-items: start;
+    justify-items: start;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
     color: black; 
     background-color: #e7e7e7;
-    padding: 0.5em; 
-}
-.ingredients {
+    border-radius: 0px 0px 6px 6px;
     font-size: 0.8em;
+    margin-top: 1.5em;
+}
+
+
+.ingredients {
     list-style: none;
-    width: 50%;
     padding: 0px;
+    margin: 0px;
 }
 .recipe-description {
-    font-size: 0.8em;
-    width: 240px;
     display: -webkit-box;
-    -webkit-line-clamp: 6;
+    -webkit-line-clamp: 7;
     -webkit-box-orient: vertical;
-    text-overflow: ellipsis;
     overflow: hidden;
-    height: 109px;
+    margin: 0px;
 }
