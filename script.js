@@ -36,13 +36,13 @@ function showRecipe(tabRecipes) {
         
         recipeIngredients.map (ingredient => {
             if (ingredient.quantity && !ingredient.unit) {
-                listOfIngredients += '<li>'+ ingredient["ingredient"] + ':' + ' ' + ingredient["quantity"] + '</li>'; 
+                listOfIngredients += '<li>'+ '<span class="bold">' + ingredient["ingredient"] + ':' + '</span>'+ ' ' + ingredient["quantity"] + '</li>'; 
             }    
             else if (ingredient.unit) {
-                listOfIngredients += '<li>'+ ingredient["ingredient"] + ':' + ' ' + ingredient["quantity"] + ' ' + ingredient["unit"] + '</li>';
+                listOfIngredients += '<li>' + '<span class="bold">' + ingredient["ingredient"] + ':' + '</span>' + ' ' + ingredient["quantity"] + ' ' + ingredient["unit"] + '</li>';
             }
             else {
-                listOfIngredients += '<li>'+ ingredient["ingredient"] + '</li>';
+                listOfIngredients += '<li>' + '<span class="bold">'+ ingredient["ingredient"] + '</span>' + '</li>';
             }
         })
 
@@ -63,9 +63,9 @@ mainInput.addEventListener('keyup', (e) => {
     const searchString = e.target.value.toLowerCase();
 
     if (searchString.length < 3) {
-        recipesMain.innerHTML = "Veuillez entrer au moins 3 caractères d'un ingrédient ou ustensiles."
-        //showRecipe(recipesAll);
+        recipesMain.innerHTML = "Aucune recette ne correspond à votre critère...vous pouvez chercher  «tarte aux pommes»,  «poisson» etc."
     }
+
     else {
         recipesMain.innerHTML = "";
         recipeFilter(searchString);
@@ -73,6 +73,7 @@ mainInput.addEventListener('keyup', (e) => {
 }); 
 
 
+let filteredRecipesArray = recipesAll;
 
 function recipeFilter(value) {
     const filteredRecipes = recipesAll.filter((recipe) => {
@@ -82,12 +83,15 @@ function recipeFilter(value) {
             recipe.ingredients.some((ingredientDetail) => ingredientDetail.ingredient.toLowerCase().includes(value))
         )
     });
+   
+    filteredRecipesArray = filteredRecipes;
 
-    let filteredRecipesArray = [];
-    console.log(filteredRecipesArray);
-    filteredRecipesArray.push(filteredRecipes);
+    showIngredients();
+    showAppliance();
+    showUstensils();
     showRecipe(filteredRecipes);
 }
+
 
 // 3 dropdowns: ingredients, appliance, ustensiles - on click show dropdowns
 
@@ -103,7 +107,6 @@ const filterInputs = document.querySelectorAll('.filter-button > input')
 filterInputs.forEach(input => {
     input.addEventListener('click', e => {
         showDropDown(e, input)
-        inputText(e, inputs);
     })  
 });
 
@@ -113,10 +116,14 @@ function showDropDown(e, input) {
 
         if(e.target.dataset.choisi === "true") {
             input.parentNode.classList.add("active")
-            
+            input.style.width = '195px';
+            input.value =  "";
         }
+        
         if(e.target.dataset.choisi === "false" ) {
             input.parentNode.classList.remove("active")
+            input.style.width = '166px';
+            input.value =  e.target.getAttribute("data-value");
         }
 }
 
@@ -129,49 +136,15 @@ console.log(ingredientsInput.value);
 console.log(applianceInput.value);
 console.log(ustensilsInput.value);
 
- 
-function inputText (e, inputs) {
-    
-        inputs.forEach(input => {
-            if (input.value == "Ingrédients") {
-                console.log (input.value)
-                input.removeAttribute('value');
-                input.setAttribute('placeholder', 'Recherche un ingrédient')
-            }
-        });
-    
-    
-    /*let ingredientsInput = true;
-    if (ingredientsInput) {
-        ingredientsInput.removeAttribute('value');
-        ingredientsInput.setAttribute ('placeholder', 'Recherche un ingrédient')
-    }*/
-    /*switch (input) {
-        case 'Ingrédients': 
-        ingredientsInput.removeAttribute('value');
-        ingredientsInput.setAttribute ('placeholder', 'Recherche un ingrédient')
-        console.log('he');
-        break;
-        case 'Appareil': 
-        applianceInput.setAttribute ('placeholder', 'Recherche un appareil')
-        break;
-        case 'Ustensiles': 
-        ustensilsInput.setAttribute ('placeholder', 'Recherche un ustensile')
-        break;
-        default:
-        break;    
-    }*/
-    console.log('he');
-}
-inputText(inputs);
 
 //looping through appliance - launching dropdown appliance
 
 const dropDownAppliance = document.getElementById("dropdown-appliance");
 
 function showAppliance() {
+    
     let recipeApplianceAll = [];
-    recipesAll.forEach(recipe => {
+    filteredRecipesArray.forEach(recipe => {
 
         let recipeAppliance = recipe["appliance"]; //object of strings
         
@@ -188,7 +161,7 @@ function showAppliance() {
     }
     console.log(applianceSorted)
     applianceSort();*/
-
+    dropDownAppliance.innerHTML = "";
     recipeApplianceAll.forEach(recipe => {
         let appliance = document.createElement("li");
         appliance.classList.add("appliance-li");
@@ -206,8 +179,7 @@ const dropDownUstensils = document.getElementById("dropdown-ustensils");
 
 function showUstensils() {
     let recipeUstensilsAll = [];
-
-    recipesAll.forEach(recipe => {
+    filteredRecipesArray.forEach(recipe => {
         recipe.ustensils.forEach(ustensil => {
             var recipeUstensil = ustensil;
             if (!recipeUstensilsAll.includes(recipeUstensil)) {
@@ -223,7 +195,7 @@ function showUstensils() {
         }
         ustensilSort(recipeUstensilsAll); 
     });
-
+    dropDownUstensils.innerHTML = "";
     recipeUstensilsAll.forEach(recipe => {
         let ustensil = document.createElement("li");
         ustensil.classList.add("ustensil-li");
@@ -238,9 +210,9 @@ showUstensils()
 //looping through ingredients - launching dropdown of ingredients
 const dropDownIngredients = document.getElementById("dropdown-ingredients");
 
-function showIngredients() { 
+function showIngredients() {
     let recipeIngredientsAll = []
-    recipesAll.forEach(recipe => {
+    filteredRecipesArray.forEach(recipe => {
         recipe.ingredients.forEach(ingredient => {
             var recipeIngredient = ingredient.ingredient;
             if (!recipeIngredientsAll.includes(recipeIngredient)) {
@@ -248,6 +220,7 @@ function showIngredients() {
             }
         })
     });
+    dropDownIngredients.innerHTML = "";
     recipeIngredientsAll.forEach(recipe => {
         let ingredient = document.createElement("li");
         ingredient.classList.add("ingredient-li");
