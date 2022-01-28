@@ -127,14 +127,8 @@ function showDropDown(e, input) {
         }
 }
 
-const inputs = document.querySelectorAll('.filter-button > input');  
-const ingredientsInput = document.getElementById('ingredients'); 
-const applianceInput = document.getElementById('appliance');
-const ustensilsInput = document.getElementById('ustensils');
+//const inputs = document.querySelectorAll('.filter-button > input');  
 
-console.log(ingredientsInput.value);
-console.log(applianceInput.value);
-console.log(ustensilsInput.value);
 
 
 //looping through appliance - launching dropdown appliance
@@ -231,5 +225,63 @@ function showIngredients() {
 }
 showIngredients();
 
+//secondary search in filter-buttons: Ingredients, Appliance, Ustensils
+const ingredientsLi = document.querySelectorAll(".ingredient-li");
+const ingredientsInput = document.getElementById('ingredients'); 
+const appliancesLi = document.querySelectorAll(".appliance-li");
+const applianceInput = document.getElementById('appliance');
+const ustensilsLi = document.querySelectorAll(".ustensil-li");
+const ustensilsInput = document.getElementById('ustensils');
+
+//secondary search in ingredients filter-button - forEach loop in <li class= "ingredient-li"></li> 
+ingredientsInput.addEventListener('keyup', (e) => {
+    const searchValue = e.target.value
+    console.log(searchValue);
+    ingredientsLi.forEach(ingredientLi => {
+        //console.log(ingredientLi.innerText);
+        if ( ingredientLi.innerText.includes(searchValue)) {
+            console.log(ingredientLi);
+            ingredientLi.style.display = "flex";
+        }
+    
+        else {
+            ingredientLi.style.display = "none";
+        }
+    })    
+}); 
+
+//secondary search in appliance filter-button - forEach loop in <li class= "appliance-li"></li> 
+applianceInput.addEventListener('keyup', (e) => {
+    const searchValue = e.target.value
+    //console.log(searchValue);
+    appliancesLi.forEach(applianceLi => {
+        //console.log(applianceLi.innerText);
+        if ( applianceLi.innerText.includes(searchValue)) {
+            //console.log(applianceLi);
+            applianceLi.style.display = "flex";
+        }
+    
+        else {
+            applianceLi.style.display = "none";
+        }
+    })    
+}); 
+
+//secondary search in ustensiles filter-button - forEach loop in <li class= "ustensil-li"></li> 
+ustensilsInput.addEventListener('keyup', (e) => {
+    const searchValue = e.target.value
+    console.log(searchValue);
+    ustensilsLi.forEach(ustensilLi => {
+        console.log(ustensilLi.innerText);
+        if ( ustensilLi.innerText.includes(searchValue)) {
+            console.log(ustensilLi);
+            ustensilLi.style.display = "flex";
+        }
+    
+        else {
+            ustensilLi.style.display = "none";
+        }
+    })    
+}); 
 
 
