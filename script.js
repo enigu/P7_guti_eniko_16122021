@@ -97,20 +97,56 @@ function recipeFilter(value) {
 
 const filters = document.querySelectorAll('.filter-button');
 const arrows = document.querySelectorAll('.arrow')
+console.log(arrows);
 const dropDown = document.querySelectorAll('.dropdown')
 const dropDownMenu = document.querySelectorAll('.dropdown-menu')
 
 
 const filterInputs = document.querySelectorAll('.filter-button > input')
 
-//eventListener on 3 filter buttons: ingredients, appliance, ustensils
-filterInputs.forEach(input => {
-    input.addEventListener('click', e => {
-        showDropDown(e, input)
+//eventListener on 3 filter-button-arrows: ingredients, appliance, ustensils
+arrows.forEach(arrow => {
+    arrow.addEventListener('click', e => {
+        //showDropDown(e, input, arrow)
+        showDropDown(e, arrow)
     })  
 });
 
-function showDropDown(e, input) {
+//eventListener on 3 filter buttons: ingredients, appliance, ustensils
+/*filterInputs.forEach(input => {
+    input.addEventListener('click', e => {
+        showDropDown(e, input)
+    })  
+});*/
+
+//show dropdown with arrow
+function showDropDown(e, arrow) {
+    e.target.dataset.choisi =  e.target.dataset.choisi == "true" ? "false": "true";
+        console.log(e.target.dataset)
+
+        if(e.target.dataset.choisi === "true") {
+            arrow.parentNode.classList.add("active")
+            arrow.previousElementSibling.width = '195px';
+            console.log(arrow.previousElementSibling);
+            arrow.previousElementSibling.value = "";
+        }
+        
+        if(e.target.dataset.choisi === "false" ) {
+            console.log(e.target)
+            arrow.parentNode.classList.remove("active")
+            arrow.previousElementSibling.width = '166px';
+            console.log(arrow.previousElementSibling);
+            arrows.forEach(arrow => {
+                arrow.previousElementSibling.value = 
+            })
+            
+            //arrow.previousElementSibling.value = e.target.previousElementSibling.getAttribute("data-value");
+            //console.log(e.target.previousElementSibling.getAttribute("data-value"))
+        }
+}
+
+//show dropdown with input
+/*function showDropDown(e, input) {
     e.target.dataset.choisi =  e.target.dataset.choisi == "true" ? "false": "true";
         console.log(e.target.dataset)
 
@@ -125,7 +161,7 @@ function showDropDown(e, input) {
             input.style.width = '166px';
             input.value =  e.target.getAttribute("data-value");
         }
-}
+}*/
 
 //const inputs = document.querySelectorAll('.filter-button > input');  
 
@@ -236,11 +272,11 @@ const ustensilsInput = document.getElementById('ustensils');
 //secondary search in ingredients filter-button - forEach loop in <li class= "ingredient-li"></li> 
 ingredientsInput.addEventListener('keyup', (e) => {
     const searchValue = e.target.value
-    console.log(searchValue);
+    //console.log(searchValue);
     ingredientsLi.forEach(ingredientLi => {
         //console.log(ingredientLi.innerText);
         if ( ingredientLi.innerText.includes(searchValue)) {
-            console.log(ingredientLi);
+            //console.log(ingredientLi);
             ingredientLi.style.display = "flex";
         }
     
@@ -255,8 +291,8 @@ applianceInput.addEventListener('keyup', (e) => {
     const searchValue = e.target.value
     //console.log(searchValue);
     appliancesLi.forEach(applianceLi => {
-        //console.log(applianceLi.innerText);
-        if ( applianceLi.innerText.includes(searchValue)) {
+        console.log(applianceLi.innerText);
+        if (applianceLi.innerText.includes(searchValue)) {
             //console.log(applianceLi);
             applianceLi.style.display = "flex";
         }
