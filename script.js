@@ -134,14 +134,13 @@ function showDropDown(e, arrow) {
         if(e.target.dataset.choisi === "false" ) {
             console.log(e.target)
             arrow.parentNode.classList.remove("active")
-            arrow.previousElementSibling.width = '166px';
+            arrow.previousElementSibling.width = '110px';
             console.log(arrow.previousElementSibling);
             arrows.forEach(arrow => {
-                arrow.previousElementSibling.value = 
+                arrow.previousElementSibling.value = arrow.previousElementSibling.getAttribute("data-value");
+                console.log(e.target.parentNode.previousElementSibling.getAttribute("data-value"))
             })
-            
-            //arrow.previousElementSibling.value = e.target.previousElementSibling.getAttribute("data-value");
-            //console.log(e.target.previousElementSibling.getAttribute("data-value"))
+
         }
 }
 
@@ -321,3 +320,31 @@ ustensilsInput.addEventListener('keyup', (e) => {
 }); 
 
 
+//eventListener on lists-li: ingredients, appliance, ustensils: (".ingredient-li"), (".appliance-li"), (".ustensil-li");
+
+
+// object of (".ingredient-li"), (".appliance-li"), (".ustensil-li");
+let selectedTags = {};
+
+//const ingredientsLi = document.querySelectorAll(".ingredient-li");
+ingredientsLi.forEach(ingredientLi => {
+    ingredientLi.addEventListener('click', e => {
+        selectedTags[ingredientLi.innerText] = "ingredient";
+    })  
+});
+
+//const appliancesLi = document.querySelectorAll(".appliance-li");
+appliancesLi.forEach(applianceLi => {
+    applianceLi.addEventListener('click', e => {
+        selectedTags[applianceLi.innerText] = "appliance";
+        console.log(selectedTags);
+    })  
+});
+
+//const ustensilsLi = document.querySelectorAll(".ustensil-li");
+ustensilsLi.forEach(ustensilLi => {
+    ustensilLi.addEventListener('click', e => {
+        selectedTags[ustensilLi.innerText] = "ustensil";
+        console.log(selectedTags);
+    })  
+});

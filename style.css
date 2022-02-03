@@ -126,6 +126,11 @@
 .filter-button.active {
     width: 400px;
     padding: 16px 32px 16px 32px;
+    justify-content: space-between;
+}
+
+.filter-button.active > input {
+    width: 195px;
 }
 
 .filter-button.active + .dropdown-menu {
@@ -148,7 +153,7 @@
     height: 6vh;
     flex-direction: row;
     align-content: center;
-    justify-content: space-evenly;
+    justify-content: center;
     align-items: center; 
     position: relative;
     border-radius: 4px;
@@ -159,6 +164,7 @@
     border: none;
     padding: 0;
     font-size: 1em;
+    width: 110px;
 }
 
 .filter-button input:focus {
