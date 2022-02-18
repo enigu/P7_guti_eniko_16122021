@@ -259,6 +259,7 @@ function showIngredients() {
 showIngredients();
 
 function showIngredients2(tab) {
+    console.log("hello");
     let recipeIngredientsAll = []
     tab.forEach(recipe => {
         recipe.ingredients.forEach(ingredient => {
@@ -275,7 +276,9 @@ function showIngredients2(tab) {
 
         ingredient.innerHTML = recipe;
         dropDownIngredients.appendChild(ingredient);
-    }); 
+    });
+
+
 }
 
 function showAppliance2(tab) {
@@ -305,8 +308,9 @@ function showAppliance2(tab) {
 
         appliance.innerHTML = recipe;
         dropDownAppliance.appendChild(appliance);
-    }); 
+    });
 };
+
 
 function showUstensils2(tab) {
     let recipeUstensilsAll = [];
@@ -317,14 +321,6 @@ function showUstensils2(tab) {
                 recipeUstensilsAll.push(recipeUstensil);
             }
         })
-
-        function ustensilSort() { 
-            sortedUstensils = recipeUstensilsAll.sort()
-            let upperCasedUstensils = sortedUstensils.map(ustensil => ustensil.charAt(0).toUpperCase() + ustensil.substr(1))
-            //console.log(upperCasedUstensils);
-            return upperCasedUstensils;
-        }
-        ustensilSort(); 
     });
     dropDownUstensils.innerHTML = "";
     recipeUstensilsAll.forEach(recipe => {
@@ -403,11 +399,11 @@ ustensilsInput.addEventListener('keyup', (e) => {
 
 // object of (".ingredient-li"), (".appliance-li"), (".ustensil-li");
 let selectedTags = {};
-console.log(selectedTags)
 
 //const ingredientsLi = document.querySelectorAll(".ingredient-li");
 
 function tagFilter() {
+    console.log("toto");
     const ingredientsList = document.querySelectorAll(".ingredient-li");
 
     ingredientsList.forEach(ingredientList => {
@@ -417,9 +413,13 @@ function tagFilter() {
             const tag = createTag(ingredientList.innerText, "ingredient");
             //console.log(tag);
             tagsSection.appendChild(tag);
-            let croix = document.querySelectorAll(".croix-tag");
 
-            croix.addEventListener("click", deleteTag);
+            tag.children[1].addEventListener("click", e => {
+                tag.remove();
+                delete selectedTags[e.target.previousElementSibling.innerText];
+                tagFilteredRecipes();
+            })
+
             
             tagFilteredRecipes();
         })  
@@ -433,6 +433,12 @@ function tagFilter() {
             const tag = createTag(applianceList.innerText, "appliance");
             tagsSection.appendChild(tag);
 
+            tag.children[1].addEventListener("click", e => {
+                tag.remove();
+                delete selectedTags[e.target.previousElementSibling.innerText];
+                tagFilteredRecipes();
+            })
+
             tagFilteredRecipes();
         })  
     });
@@ -442,6 +448,13 @@ function tagFilter() {
             selectedTags[ustensilList.innerText] = "ustensil";
             const tag = createTag(ustensilList.innerText, "ustensil");
             tagsSection.appendChild(tag); 
+
+            tag.children[1].addEventListener("click", e => {
+                tag.remove();
+                delete selectedTags[e.target.previousElementSibling.innerText];
+                tagFilteredRecipes();
+            })
+
             tagFilteredRecipes();
         })  
     });
@@ -536,6 +549,7 @@ function tagFilteredRecipes() {
     showIngredients2(tagFilteredRecipeArray);
     showAppliance2(tagFilteredRecipeArray);
     showUstensils2(tagFilteredRecipeArray);
+    tagFilter();
 } 
 
 
