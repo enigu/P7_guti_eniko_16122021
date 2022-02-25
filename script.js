@@ -74,28 +74,47 @@ mainInput.addEventListener('keyup', (e) => {
     const searchString = e.target.value.toLowerCase();
 
     if (searchString.length < 3) {
-        recipesMain.innerHTML = "Aucune recette ne correspond à votre critère...vous pouvez chercher  «tarte aux pommes»,  «poisson» etc."
-    }
-
-    else {
+        recipesMain.innerHTML = "";
+        filteredRecipesArray = recipesAll;
+        showRecipe(recipesAll);
+        tagFilter();
+        /*showAppliance();
+        showIngredients();
+        showUstensils();*/
+    } else {
         recipesMain.innerHTML = "";
         recipeFilter(searchString);
     }
+    
 }); 
 
 
 
 
 function recipeFilter(value) {
-    const filteredRecipes = recipesAll.filter((recipe) => {
+    /*const filteredRecipes = recipesAll.filter((recipe) => {
         return (
             recipe.name.toLowerCase().includes(value) ||
             recipe.description.toLowerCase().includes(value) ||
             recipe.ingredients.some((ingredientDetail) => ingredientDetail.ingredient.toLowerCase().includes(value))
         )
-    });
+    });*/
+
+    const filteredRecipes = [];
+
+    for (let i = 0; i < recipesAll.length; i++) {
+        if (recipesAll[i].name.toLowerCase().includes(value) ||
+        recipesAll[i].description.toLowerCase().includes(value) ||
+        recipesAll[i].ingredients.some((ingredientDetail) => ingredientDetail.ingredient.toLowerCase().includes(value))) {
+            filteredRecipes.push(recipesAll[i]);
+        }
+    }
    
     filteredRecipesArray = filteredRecipes;
+
+    if (filteredRecipes.length == 0) {
+        recipesMain.innerHTML = "Aucune recette ne correspond à votre critère...vous pouvez chercher  «tarte aux pommes»,  «poisson» etc."
+    }
 
 
     showRecipe(filteredRecipes);
@@ -259,7 +278,6 @@ function showIngredients() {
 showIngredients();
 
 function showIngredients2(tab) {
-    console.log("hello");
     let recipeIngredientsAll = []
     tab.forEach(recipe => {
         recipe.ingredients.forEach(ingredient => {
@@ -403,7 +421,6 @@ let selectedTags = {};
 //const ingredientsLi = document.querySelectorAll(".ingredient-li");
 
 function tagFilter() {
-    console.log("toto");
     const ingredientsList = document.querySelectorAll(".ingredient-li");
 
     ingredientsList.forEach(ingredientList => {
