@@ -1,25 +1,5 @@
 
-// HTML recipe-card
-/*<div class="recipe-card">
-<a href="#">
-    <div class="recipe-img"></div>
-    <div class="recipe-info">
-        <div class="recipe-header">
-            <h2></h2>
-            <div class="recipe-time">
-                <i class="far fa-clock"></i>
-                <p>min</p>
-            </div>
-        </div>
-        <div class="recipe-details">
-            <ul class="ingredients">
-                <li></li>
-            </ul>
-            <p class="recipe-description"></p>
-        </div>
-    </div>    
-</a>
-</div>*/
+
 
 let filteredRecipesArray = recipesAll;
 //looping through ingredients - launching dropdown of ingredients
@@ -139,12 +119,6 @@ arrows.forEach(arrow => {
     })  
 });
 
-//eventListener on 3 filter buttons: ingredients, appliance, ustensils
-/*filterInputs.forEach(input => {
-    input.addEventListener('click', e => {
-        showDropDown(e, input)
-    })  
-});*/
 
 //show dropdown with arrow
 function showDropDown(e, arrow) {
@@ -166,28 +140,8 @@ function showDropDown(e, arrow) {
         }
 }
 
-//show dropdown with input
-/*function showDropDown(e, input) {
-    e.target.dataset.choisi =  e.target.dataset.choisi == "true" ? "false": "true";
-        console.log(e.target.dataset)
-
-        if(e.target.dataset.choisi === "true") {
-            input.parentNode.classList.add("active")
-            input.style.width = '195px';
-            input.value =  "";
-        }
-        
-        if(e.target.dataset.choisi === "false" ) {
-            input.parentNode.classList.remove("active")
-            input.style.width = '166px';
-            input.value =  e.target.getAttribute("data-value");
-        }
-}*/
-
 
 //looping through appliance - launching dropdown appliance
-
-
 
 function showAppliance() {
     
@@ -220,8 +174,6 @@ function showAppliance() {
 };
 
 showAppliance();
-
-
 
 
 function showUstensils() {
@@ -479,28 +431,10 @@ function tagFilter() {
 tagFilter();
 
 
-
-
-
-
-
 // create tags above dropdowns with accordingli colors (".ingredient-li"), (".appliance-li"), (".ustensil-li");
-//HTML
-/*<div class="tag">
-    <span>coco</span>
-    <i class="far fa-times-circle"></i>
-</div>*/
 
 const tagsSection = document.querySelector(".tags");
-//tags = [];
 
-/*function addTags(){
-    tags.slice().reverse().forEach(function(tag) {
-        const tag = createTag(ingredientLi.innerText);
-        console.log(tag);
-        tagsSection.prepend(tag); 
-    })
-}*/
 
 function createTag(label, type) {
     const tagDiv = document.createElement('div');
@@ -520,18 +454,12 @@ function createTag(label, type) {
     return tagDiv;
 }
 
-//tagsSection.prepend(createTag('moutarde'));
-
-
 
 function tagFilteredRecipes() {
     let tagFilteredRecipeArray = [];
     filteredRecipesArray.forEach(recipe => { 
         let bool = true;
-        //ingredientsTagFilter();
-        //console.log(filteredRecipesArray);
-        //ingredientsTagFilter();
-        //console.log(selectedTags);
+       
         for(var key in selectedTags) {
             if (selectedTags[key] == "ingredient") {
                 //lance ta fonction qui va trier les recettes par ingrédients et les mettre dans tableauTri
@@ -570,25 +498,6 @@ function tagFilteredRecipes() {
 } 
 
 
-
-
-
-// functional loops
-
-/*let filteredRecipesArray = [];
-
-for (let i = 0; i < recipesAll.length; i++) {
-    if (recipesAll[i].name.toLowerCase().indexOf(searchString) > -1) {
-        filteredRecipesArray.push(recipesAll[i]);
-    }
-    if (recipesAll[i].description.toLowerCase().indexOf(searchString) > -1) {
-        filteredRecipesArray.push(recipesAll[i]);
-    }
-    if (recipesAll[i].ingredients.toLowerCase().indexOf(searchString) > -1) {
-        filteredRecipesArray.push(recipesAll[i]);
-    }
-
-}*/
 
 
 
