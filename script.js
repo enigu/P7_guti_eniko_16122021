@@ -74,10 +74,14 @@ mainInput.addEventListener('keyup', (e) => {
     const searchString = e.target.value.toLowerCase();
 
     if (searchString.length < 3) {
-        recipesMain.innerHTML = "Aucune recette ne correspond à votre critère...vous pouvez chercher  «tarte aux pommes»,  «poisson» etc."
-    }
-
-    else {
+        recipesMain.innerHTML = "";
+        filteredRecipesArray = recipesAll;
+        showRecipe(recipesAll);
+        tagFilter();
+        /*showAppliance();
+        showIngredients();
+        showUstensils();*/
+    } else {
         recipesMain.innerHTML = "";
         recipeFilter(searchString);
     }
@@ -97,6 +101,9 @@ function recipeFilter(value) {
    
     filteredRecipesArray = filteredRecipes;
 
+    if (filteredRecipesArray.length == 0) {
+        recipesMain.innerHTML = "Aucune recette ne correspond à votre critère...vous pouvez chercher  «tarte aux pommes»,  «poisson» etc."
+    }
 
     showRecipe(filteredRecipes);
     tagFilter();
