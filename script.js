@@ -1,6 +1,5 @@
 
 
-
 let filteredRecipesArray = recipesAll;
 //looping through ingredients - launching dropdown of ingredients
 const dropDownIngredients = document.getElementById("dropdown-ingredients");
@@ -70,15 +69,8 @@ mainInput.addEventListener('keyup', (e) => {
 
 
 
-
+//filter recipes with native loops
 function recipeFilter(value) {
-    /*const filteredRecipes = recipesAll.filter((recipe) => {
-        return (
-            recipe.name.toLowerCase().includes(value) ||
-            recipe.description.toLowerCase().includes(value) ||
-            recipe.ingredients.some((ingredientDetail) => ingredientDetail.ingredient.toLowerCase().includes(value))
-        )
-    });*/
 
     const filteredRecipes = [];
 
@@ -95,8 +87,6 @@ function recipeFilter(value) {
     if (filteredRecipes.length == 0) {
         recipesMain.innerHTML = "Aucune recette ne correspond à votre critère...vous pouvez chercher  «tarte aux pommes»,  «poisson» etc."
     }
-
-
     showRecipe(filteredRecipes);
     tagFilter();
 }
@@ -119,7 +109,6 @@ arrows.forEach(arrow => {
     })  
 });
 
-
 //show dropdown with arrow
 function showDropDown(e, arrow) {
     e.target.dataset.choisi =  e.target.dataset.choisi == "true" ? "false": "true";
@@ -140,7 +129,6 @@ function showDropDown(e, arrow) {
         }
 }
 
-
 //looping through appliance - launching dropdown appliance
 
 function showAppliance() {
@@ -155,14 +143,6 @@ function showAppliance() {
         }
     });
 
-    /*applianceSorted = []
-    function applianceSort() {  
-        sortedAppliance = recipeApplianceAll.sort()
-        applianceSorted.push(sortedAppliance);
-        
-    }
-    console.log(applianceSorted)
-    applianceSort();*/
     dropDownAppliance.innerHTML = "";
     recipeApplianceAll.forEach(recipe => {
         let appliance = document.createElement("li");
@@ -263,14 +243,6 @@ function showAppliance2(tab) {
         }
     });
 
-    /*applianceSorted = []
-    function applianceSort() {  
-        sortedAppliance = recipeApplianceAll.sort()
-        applianceSorted.push(sortedAppliance);
-        
-    }
-    console.log(applianceSorted)
-    applianceSort();*/
     dropDownAppliance.innerHTML = "";
     recipeApplianceAll.forEach(recipe => {
         let appliance = document.createElement("li");
