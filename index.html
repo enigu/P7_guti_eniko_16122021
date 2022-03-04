@@ -10,8 +10,8 @@
     <title>Les petits plats</title>
 </head>
 <body>
-    <div class="container" aria-labelledby="container">
-        <header class="header" role="banner">
+    <div class="container">
+        <header class="header">
             <a class="logo" href="#">
                 <svg width="268" height="93" viewBox="0 0 268 93" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path fill-rule="evenodd" clip-rule="evenodd" d="M147.508 25.3424V35.1415H120.402V25.3424C115.998 25.3424 112.609 21.9635 112.609 17.5708C112.609 13.1781 115.998 9.79908 120.402 9.79908C123.452 9.79908 126.162 11.4886 127.518 14.1918L130.906 12.5023C129.889 10.8128 128.873 9.12328 127.179 8.10958C128.534 5.74429 130.906 4.05479 133.955 4.05479C138.36 4.05479 141.748 7.43378 141.748 11.8265C141.748 13.1781 141.409 14.5297 140.732 15.8813L144.12 17.9087C145.136 16.2192 145.814 14.1918 145.814 11.8265C145.814 11.1507 145.814 10.8128 145.814 10.137C146.492 9.79908 147.169 9.79908 147.847 9.79908C152.252 9.79908 155.64 13.1781 155.64 17.5708C155.64 21.9635 151.913 25.3424 147.508 25.3424ZM147.508 42.9132H120.402V39.1963H147.508V42.9132ZM147.508 6.08219C146.492 6.08219 145.475 6.42009 144.12 6.42009C142.087 2.70319 138.36 0 133.955 0C129.551 0 125.485 2.36529 123.791 6.42009C122.774 6.08219 121.758 6.08219 120.402 6.08219C113.965 6.08219 108.882 11.1507 108.882 17.5708C108.882 22.6393 112.271 27.0319 116.675 28.3835V46.2922H151.574V28.7214C155.979 27.0319 159.367 22.9772 159.367 17.9087C159.367 11.4886 153.946 6.08219 147.508 6.08219ZM130.228 31.0867H126.501V23.653H130.228V31.0867ZM141.748 31.0867H138.021V23.653H141.748V31.0867Z" fill="#D04F4F"/>
@@ -20,7 +20,7 @@
             </a>
 
         </header>
-        <nav class="main-nav" role="navigation">
+        <nav class="main-nav">
             <input type="text" id="main-input" placeholder="Rechercher un ingrédient, appareil, ustensiles ou une recette"> 
             <button class="button-search">
                 <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" class="svg-inline--fa fa-search fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"></path></svg>
@@ -34,7 +34,7 @@
         <section class="filter">
             <div class="dropdown">
                 <div class="filter-button" id="ingredient-button">
-                    <input data-choisi="false" type="text" placeholder="Recherche un ingrédient" role="choice" data-value="Ingrédients" value="Ingrédients" class="choice" id="ingredients" data-color="#3282f7">
+                    <input data-choisi="false" type="text" placeholder="Recherche un ingrédient" data-value="Ingrédients" value="Ingrédients" class="choice" id="ingredients" data-color="#3282f7">
                     <span class="arrow"><i class="fas fa-chevron-down"></i></span>
                 </div>
                 <ul class="dropdown-menu" id="dropdown-ingredients"> 
@@ -44,7 +44,7 @@
 
             <div class="dropdown">
                 <div class="filter-button" id="appliance-button">
-                    <input  data-choisi="false" type="text" placeholder="Recherche un appareil" role="choice" data-value="Appareil" value="Appareil" class="choice" id="appliance" data-color="#68d9a4">
+                    <input  data-choisi="false" type="text" placeholder="Recherche un appareil" data-value="Appareil" value="Appareil" class="choice" id="appliance" data-color="#68d9a4">
                     <span class="arrow"><i class="fas fa-chevron-down"></i></span>
                 </div>
                 <ul class="dropdown-menu" id="dropdown-appliance"> 
@@ -54,7 +54,7 @@
 
             <div class="dropdown">
                 <div class="filter-button" id="ustensil-button">
-                    <input data-choisi="false" type="text" placeholder="Recherche un ustensile" role="choice" data-value="Ustensiles" value="Ustensiles" class="choice" id="ustensils" data-color="#ed6454">
+                    <input data-choisi="false" type="text" placeholder="Recherche un ustensile" data-value="Ustensiles" value="Ustensiles" class="choice" id="ustensils" data-color="#ed6454">
                     <span class="arrow"><i class="fas fa-chevron-down"></i></span>
                 </div>
                 <ul class="dropdown-menu" id="dropdown-ustensils"> 
@@ -71,7 +71,7 @@
         </main>
 
     </div>
-    <script type="text/javascript" src="recipes.js"></script> 
-    <script type="text/javascript" src="script.js"></script> 
+    <script src="recipes.js"></script> 
+    <script src="script.js"></script> 
 </body>
 </html>
